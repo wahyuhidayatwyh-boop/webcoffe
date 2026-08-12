@@ -1,0 +1,195 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Tentang Kami - Joy Coffee & Eatery Purwokerto</title>
+  <meta name="description" content="Kisah Joy Coffee & Eatery Purwokerto - Rumah specialty coffee 100% Arabika dengan dedikasi cita rasa dan suasana estetik WFC.">
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+  <!-- Navbar -->
+  <header class="navbar">
+    <div class="container nav-wrapper">
+      <a href="index.html" class="logo">
+        <img src="images/logo.png" alt="Joy Coffee Logo" class="logo-img">
+        <div class="logo-text">
+          Joy Coffee
+          <small>specialty coffee</small>
+        </div>
+      </a>
+
+      <ul class="nav-links">
+        <li><a href="index.html">Beranda</a></li>
+        <li><a href="menu.html">Menu</a></li>
+        <li><a href="beans.html">Biji Kopi</a></li>
+        <li><a href="about.html" class="active">Tentang Kami</a></li>
+        <li><a href="gallery.html">Galeri</a></li>
+        <li><a href="contact.html">Kontak</a></li>
+        <li class="mobile-res-item"><button class="btn btn-primary" onclick="openModal('reservationModal')" style="width:100%; margin-top:8px;">Reservasi Meja</button></li>
+      </ul>
+
+      <div class="nav-actions">
+        <button class="nav-toggle-btn" onclick="toggleMobileNav()"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"><line x1="3" y1="6" x2="21" y2="6"></line><line x1="3" y1="12" x2="21" y2="12"></line><line x1="3" y1="18" x2="21" y2="18"></line></svg> Menu</button>
+        <button class="btn btn-primary desktop-res-btn" onclick="openModal('reservationModal')">
+          Reservasi Meja
+        </button>
+      </div>
+    </div>
+  </header>
+
+  <!-- Page Banner -->
+  <div class="page-banner">
+    <div class="container">
+      <h1>Tentang Joy Coffee & Eatery</h1>
+      <p>Rumah hangat bagi pencinta kopi specialty, tempat mencari inspirasi nugas, dan ruang berbagi cerita di Purwokerto.</p>
+    </div>
+  </div>
+
+  <!-- About Story Section (Photo at Top on Mobile Stack) -->
+  <section style="padding: 50px 0;">
+    <div class="container">
+      <div class="grid-2-col" style="align-items: center;">
+        <div style="border-radius: var(--radius-organic); overflow: hidden; box-shadow: var(--shadow-tactile-lg); border: 4px solid white; height: clamp(240px, 35vh, 400px);">
+          <img src="images/hero.png" alt="Joy Coffee Story Photo" style="width: 100%; height: 100%; object-fit: cover;">
+        </div>
+
+        <div>
+          <h2 class="section-title" style="margin-bottom: 16px;">Berawal dari Passion terhadap Kopi Arabika</h2>
+          <p style="color: var(--text-muted); font-size: 0.98rem; font-weight: 600; margin-bottom: 16px; line-height: 1.6;">
+            Terletak di <strong>Jl. Pramuka No. 253, Purwokerto Selatan</strong>, Joy Coffee & Eatery lahir dari keinginan menghadirkan ruang kopi specialty yang ramah, hangat, dan estetik.
+          </p>
+          <p style="color: var(--text-muted); font-size: 0.98rem; font-weight: 600; margin-bottom: 24px; line-height: 1.6;">
+            Kami percaya bahwa cangkir kopi terbaik tercipta dari kolaborasi harmonis antara biji kopi pilihan petani lokal, profil sangrai yang pas, serta dedikasi barista yang menyeduh dengan sepenuh hati.
+          </p>
+          <div class="grid-2-col" style="gap: 16px;">
+            <div style="background: white; padding: 18px; border-radius: 16px; box-shadow: var(--shadow-tactile-sm); text-align: center; border: 1px solid rgba(0,0,0,0.08);">
+              <strong style="display:block; font-size:1.6rem; color:var(--accent-orange); font-weight:800;">100%</strong>
+              <span style="font-size:0.85rem; font-weight:700; color:var(--text-dark);">Specialty Arabika</span>
+            </div>
+            <div style="background: white; padding: 18px; border-radius: 16px; box-shadow: var(--shadow-tactile-sm); text-align: center; border: 1px solid rgba(0,0,0,0.08);">
+              <strong style="display:block; font-size:1.6rem; color:var(--bg-sage-dark); font-weight:800;">08.00 - 23.00</strong>
+              <span style="font-size:0.85rem; font-weight:700; color:var(--text-dark);">Buka Setiap Hari</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Our Values Grid -->
+  <section style="padding: 50px 0 80px; background: rgba(255,255,255,0.5);">
+    <div class="container">
+      <div style="text-align: center; margin-bottom: 36px;">
+        <h2 class="section-title">Nilai Utama Kami</h2>
+        <p class="section-subtitle">Komitmen kami untuk memberikan pengalaman kopi terbaik di setiap kunjungan Anda.</p>
+      </div>
+
+      <div class="grid-3-col">
+        <div style="background: white; padding: 28px 24px; border-radius: 24px; box-shadow: var(--shadow-tactile-sm); border: 1px solid rgba(0,0,0,0.06); text-align: center;">
+          <div style="width: 52px; height: 52px; background: var(--bg-cream); color: var(--accent-orange); border-radius: 50%; display: flex; align-items: center; justify-content: center; margin: 0 auto 16px;">
+            <svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"></polygon>
+            </svg>
+          </div>
+          <h3 style="font-size: 1.15rem; font-weight: 800; margin-bottom: 8px;">Kualitas Specialty</h3>
+          <p style="font-size: 0.88rem; font-weight: 600; color: var(--text-muted); line-height: 1.5;">Hanya menyajikan biji kopi Arabika pilihandengan skor cupping tinggi dan standar seduh presisi.</p>
+        </div>
+
+        <div style="background: white; padding: 28px 24px; border-radius: 24px; box-shadow: var(--shadow-tactile-sm); border: 1px solid rgba(0,0,0,0.06); text-align: center;">
+          <div style="width: 52px; height: 52px; background: var(--bg-cream); color: var(--bg-sage-dark); border-radius: 50%; display: flex; align-items: center; justify-content: center; margin: 0 auto 16px;">
+            <svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"></path>
+            </svg>
+          </div>
+          <h3 style="font-size: 1.15rem; font-weight: 800; margin-bottom: 8px;">Kenyamanan Suasana</h3>
+          <p style="font-size: 0.88rem; font-weight: 600; color: var(--text-muted); line-height: 1.5;">Desain interior estetik, pencahayaan alami, stopkontak melimpah, dan Wi-Fi cepat untuk nugas & WFC.</p>
+        </div>
+
+        <div style="background: white; padding: 28px 24px; border-radius: 24px; box-shadow: var(--shadow-tactile-sm); border: 1px solid rgba(0,0,0,0.06); text-align: center;">
+          <div style="width: 52px; height: 52px; background: var(--bg-cream); color: var(--accent-orange); border-radius: 50%; display: flex; align-items: center; justify-content: center; margin: 0 auto 16px;">
+            <svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"></path>
+              <circle cx="9" cy="7" r="4"></circle>
+              <path d="M23 21v-2a4 4 0 0 0-3-3.87"></path>
+              <path d="M16 3.13a4 4 0 0 1 0 7.75"></path>
+            </svg>
+          </div>
+          <h3 style="font-size: 1.15rem; font-weight: 800; margin-bottom: 8px;">Kehangatan Komunitas</h3>
+          <p style="font-size: 0.88rem; font-weight: 600; color: var(--text-muted); line-height: 1.5;">Barista yang ramah dan siap berdiskusi seputar rasa kopi favorit Anda.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Footer -->
+  <footer>
+    <div class="container footer-wrapper">
+      <div>© Joy Coffee & Eatery, 2026</div>
+      <ul class="footer-links">
+        <li><a href="admin.html">CMS Admin Panel</a></li>
+        <li><a href="contact.html">Kebijakan Privasi</a></li>
+        <li><a href="contact.html">Syarat & Ketentuan</a></li>
+      </ul>
+    </div>
+  </footer>
+
+  <!-- Table Reservation Modal -->
+  <div class="modal-container" id="reservationModal">
+    <div class="modal-header">
+      <h3 class="modal-title">Reservasi Meja</h3>
+      <button class="modal-close" onclick="closeModal()"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"><line x1="18" y1="6" x2="6" y2="18"></line><line x1="6" y1="6" x2="18" y2="18"></line></svg></button>
+    </div>
+
+    <form id="reservationForm">
+      <div class="form-group">
+        <label for="resName">Nama Lengkap</label>
+        <input type="text" id="resName" class="form-control" placeholder="Masukkan nama Anda" required>
+      </div>
+
+      <div class="form-row">
+        <div class="form-group">
+          <label for="resPhone">Nomor WhatsApp</label>
+          <input type="tel" id="resPhone" class="form-control" placeholder="08xxxxxxxxxx" required>
+        </div>
+        <div class="form-group">
+          <label for="resGuests">Jumlah Tamu</label>
+          <select id="resGuests" class="form-control">
+            <option value="1-2">1 - 2 Orang</option>
+            <option value="3-4" selected>3 - 4 Orang</option>
+            <option value="5-8">5 - 8 Orang</option>
+            <option value="Group 10+">Group (>10 Orang)</option>
+          </select>
+        </div>
+      </div>
+
+      <div class="form-row">
+        <div class="form-group">
+          <label for="resDate">Tanggal</label>
+          <input type="date" id="resDate" class="form-control" required>
+        </div>
+        <div class="form-group">
+          <label for="resTime">Waktu Kedatangan</label>
+          <input type="time" id="resTime" class="form-control" value="14:00" required>
+        </div>
+      </div>
+
+      <div class="form-group">
+        <label for="resArea">Pilihan Area Duduk</label>
+        <select id="resArea" class="form-control">
+          <option value="Indoor AC (WFC Zone)">Indoor AC (Nugas / WFC Zone)</option>
+          <option value="Typewriter Spot (Estetik)">Typewriter Spot (Estetik)</option>
+          <option value="Outdoor Garden">Outdoor Garden Area</option>
+        </select>
+      </div>
+
+      <button type="submit" class="btn btn-primary" style="width:100%; margin-top:8px;">
+        Kirim Reservasi Meja
+      </button>
+    </form>
+  </div>
+
+  <script src="app.js"></script>
+</body>
+</html>

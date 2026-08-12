@@ -1,0 +1,228 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>CMS Admin Dashboard - Joy Coffee & Eatery</title>
+  <link rel="stylesheet" href="style.css">
+  <style>
+    body { background: #eef2ec; padding-bottom: 60px; }
+    .cms-container { max-width: 1100px; margin: 40px auto; padding: 0 20px; }
+    .cms-card { background: white; border-radius: 20px; padding: 32px; box-shadow: var(--shadow-md); margin-bottom: 32px; }
+    .cms-header { display: flex; justify-content: space-between; align-items: center; margin-bottom: 24px; padding-bottom: 16px; border-bottom: 1px solid var(--border-light); }
+    .table-custom { width: 100%; border-collapse: collapse; margin-top: 16px; font-size: 0.9rem; }
+    .table-custom th, .table-custom td { padding: 12px 16px; text-align: left; border-bottom: 1px solid var(--border-light); }
+    .table-custom th { background: var(--bg-cream); font-weight: 700; color: var(--text-dark); }
+    .badge-status { padding: 4px 10px; border-radius: 20px; font-size: 0.75rem; font-weight: 700; background: var(--bg-sage-light); color: var(--bg-sage-dark); }
+    .btn-delete { background: #d9534f; color: white; border: none; padding: 6px 12px; border-radius: 6px; cursor: pointer; font-size: 0.8rem; }
+    .btn-delete:hover { background: #c9302c; }
+  </style>
+</head>
+<body>
+
+  <div class="cms-container">
+    <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:24px;">
+      <div>
+        <h1 style="font-size:2rem; font-weight:800; display:flex; align-items:center; gap:12px;">
+          <img src="images/logo.png" alt="Joy Coffee Logo" style="height:44px; width:auto; border-radius:8px;">
+          Joy Coffee CMS Admin
+        </h1>
+        <p style="color:var(--text-muted); font-size:0.95rem;">Kelola Menu Kopi, Camilan, dan Reservasi Pelanggan secara Real-Time</p>
+      </div>
+      <div>
+        <a href="index.html" class="btn btn-secondary">← Kembali ke Website Utama</a>
+      </div>
+    </div>
+
+    <!-- Tambah Menu Baru -->
+    <div class="cms-card">
+      <div class="cms-header">
+        <h3 style="font-size:1.3rem; font-weight:800;">+ Tambah Menu Baru</h3>
+      </div>
+      <form id="cmsAddForm">
+        <div class="form-row">
+          <div class="form-group">
+            <label>Nama Menu</label>
+            <input type="text" id="cmsItemName" class="form-control" placeholder="Contoh: Cold Brew Special" required>
+          </div>
+          <div class="form-group">
+            <label>Kategori</label>
+            <select id="cmsItemCategory" class="form-control">
+              <option value="coffee">Kopi (Coffee)</option>
+              <option value="non-coffee">Non-Kopi</option>
+              <option value="pastry">Camilan & Pastry</option>
+              <option value="beans">Biji Kopi (Beans)</option>
+            </select>
+          </div>
+        </div>
+
+        <div class="form-row">
+          <div class="form-group">
+            <label>Harga (Rp)</label>
+            <input type="number" id="cmsItemPrice" class="form-control" placeholder="25000" required>
+          </div>
+          <div class="form-group">
+            <label>URL Gambar (atau nama file di images/)</label>
+            <input type="text" id="cmsItemImage" class="form-control" placeholder="images/latte.png" required>
+          </div>
+        </div>
+
+        <div class="form-group">
+          <label>Deskripsi Singkat</label>
+          <input type="text" id="cmsItemDesc" class="form-control" placeholder="Deskripsi rasa atau keunggulan menu..." required>
+        </div>
+
+        <button type="submit" class="btn btn-primary">+ Simpan Menu Ke Database CMS</button>
+      </form>
+    </div>
+
+    <!-- Kelola Menu -->
+    <div class="cms-card">
+      <div class="cms-header">
+        <h3 style="font-size:1.3rem; font-weight:800;">Daftar Menu Saat Ini</h3>
+        <button class="btn btn-cream" onclick="resetToDefaultData()">Reset Ke Data Default</button>
+      </div>
+
+      <table class="table-custom">
+        <thead>
+          <tr>
+            <th>Gambar</th>
+            <th>Nama Menu</th>
+            <th>Kategori</th>
+            <th>Harga</th>
+            <th>Deskripsi</th>
+            <th>Aksi</th>
+          </tr>
+        </thead>
+        <tbody id="cmsMenuList">
+          <!-- Dynamic JS Injection -->
+        </tbody>
+      </table>
+    </div>
+
+    <!-- Daftar Reservasi Pelanggan -->
+    <div class="cms-card">
+      <div class="cms-header">
+        <h3 style="font-size:1.3rem; font-weight:800;">Daftar Reservasi Meja Pelanggan</h3>
+      </div>
+
+      <table class="table-custom">
+        <thead>
+          <tr>
+            <th>Tanggal</th>
+            <th>Waktu</th>
+            <th>Nama Tamu</th>
+            <th>WhatsApp</th>
+            <th>Jumlah Orang</th>
+            <th>Pilihan Area</th>
+            <th>Aksi</th>
+          </tr>
+        </thead>
+        <tbody id="cmsReservationsList">
+          <!-- Dynamic JS Injection -->
+        </tbody>
+      </table>
+    </div>
+  </div>
+
+  <script src="app.js"></script>
+  <script>
+    document.addEventListener('DOMContentLoaded', () => {
+      renderCmsTable();
+      renderCmsReservations();
+
+      document.getElementById('cmsAddForm').addEventListener('submit', (e) => {
+        e.preventDefault();
+        const name = document.getElementById('cmsItemName').value;
+        const category = document.getElementById('cmsItemCategory').value;
+        const price = parseInt(document.getElementById('cmsItemPrice').value);
+        const image = document.getElementById('cmsItemImage').value;
+        const desc = document.getElementById('cmsItemDesc').value;
+
+        const newItem = {
+          id: 'custom-' + Date.now(),
+          name,
+          category,
+          price,
+          image,
+          desc,
+          popular: true
+        };
+
+        const currentItems = getMenuData();
+        currentItems.unshift(newItem);
+        saveMenuData(currentItems);
+
+        renderCmsTable();
+        document.getElementById('cmsAddForm').reset();
+        alert(`Menu "${name}" berhasil ditambahkan ke CMS!`);
+      });
+    });
+
+    function renderCmsTable() {
+      const tbody = document.getElementById('cmsMenuList');
+      const items = getMenuData();
+
+      tbody.innerHTML = items.map(item => `
+        <tr>
+          <td><img src="${item.image}" width="40" height="40" style="border-radius:8px; object-fit:cover;"></td>
+          <td><strong>${item.name}</strong></td>
+          <td><span class="badge-status">${item.category}</span></td>
+          <td>Rp ${formatNumber(item.price)}</td>
+          <td style="color:var(--text-muted);">${item.desc}</td>
+          <td>
+            <button class="btn-delete" onclick="deleteCmsItem('${item.id}')">Hapus</button>
+          </td>
+        </tr>
+      `).join('');
+    }
+
+    function deleteCmsItem(itemId) {
+      if (confirm('Yakin ingin menghapus menu ini?')) {
+        let items = getMenuData();
+        items = items.filter(i => i.id !== itemId);
+        saveMenuData(items);
+        renderCmsTable();
+      }
+    }
+
+    function renderCmsReservations() {
+      const tbody = document.getElementById('cmsReservationsList');
+      const res = getReservationsData();
+
+      if (res.length === 0) {
+        tbody.innerHTML = `<tr><td colspan="7" style="text-align:center; color:var(--text-muted);">Belum ada data reservasi.</td></tr>`;
+        return;
+      }
+
+      tbody.innerHTML = res.map((r, idx) => `
+        <tr>
+          <td>${r.date}</td>
+          <td>${r.time}</td>
+          <td><strong>${r.name}</strong></td>
+          <td>${r.phone}</td>
+          <td>${r.guests}</td>
+          <td><span class="badge-status">${r.area}</span></td>
+          <td>
+            <button class="btn-delete" onclick="deleteReservation(${idx})">Hapus</button>
+          </td>
+        </tr>
+      `).join('');
+    }
+
+    function deleteReservation(index) {
+      let res = getReservationsData();
+      res.splice(index, 1);
+      saveReservationsData(res);
+      renderCmsReservations();
+    }
+
+    function resetToDefaultData() {
+      if (confirm('Kembalikan menu ke data default awal?')) {
+        localStorage.removeItem('joy_menu_data');
+        renderCmsTable();
+      }
+    }
+  </script>
+</body>
+</html>
