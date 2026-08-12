@@ -4,45 +4,217 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Web Coffee Repository</title>
-  <!-- Auto redirect to coffe1 -->
-  <meta http-equiv="refresh" content="0; url=coffe1/">
-  <script>
-    window.location.href = "coffe1/";
-  </script>
+  <meta name="description" content="Kumpulan project website coffee - portofolio web development dengan tema kopi.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;600;700;800&display=swap" rel="stylesheet">
   <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --bg: #0b0a0f;
+      --card: #14121a;
+      --border: rgba(212, 163, 115, 0.15);
+      --gold: #d4a373;
+      --gold-light: #f0c989;
+      --text: #e8e0d5;
+      --muted: #7a6e62;
+    }
+
     body {
-      font-family: system-ui, -apple-system, sans-serif;
+      font-family: 'Outfit', system-ui, sans-serif;
+      background: var(--bg);
+      color: var(--text);
+      min-height: 100vh;
       display: flex;
       flex-direction: column;
       align-items: center;
       justify-content: center;
-      min-height: 100vh;
-      margin: 0;
-      background: #0f0f12;
-      color: #ffffff;
+      padding: 40px 20px;
+      position: relative;
+      overflow-x: hidden;
+    }
+
+    /* Background blur orbs */
+    body::before {
+      content: '';
+      position: fixed;
+      top: -100px;
+      left: -100px;
+      width: 500px;
+      height: 500px;
+      background: radial-gradient(circle, rgba(212,163,115,0.08) 0%, transparent 70%);
+      pointer-events: none;
+    }
+    body::after {
+      content: '';
+      position: fixed;
+      bottom: -100px;
+      right: -100px;
+      width: 500px;
+      height: 500px;
+      background: radial-gradient(circle, rgba(120,80,40,0.07) 0%, transparent 70%);
+      pointer-events: none;
+    }
+
+    header {
       text-align: center;
+      margin-bottom: 60px;
     }
-    a {
-      color: #d4a373;
-      text-decoration: none;
-      font-weight: bold;
-      font-size: 1.2rem;
-      border: 1px solid #d4a373;
-      padding: 10px 20px;
-      border-radius: 8px;
-      margin-top: 15px;
+
+    .badge {
       display: inline-block;
-      transition: all 0.3s ease;
+      font-size: 0.75rem;
+      font-weight: 600;
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+      color: var(--gold);
+      border: 1px solid var(--border);
+      padding: 5px 16px;
+      border-radius: 100px;
+      margin-bottom: 20px;
+      background: rgba(212,163,115,0.05);
     }
-    a:hover {
-      background: #d4a373;
-      color: #0f0f12;
+
+    header h1 {
+      font-size: clamp(2rem, 5vw, 3.5rem);
+      font-weight: 800;
+      line-height: 1.1;
+      background: linear-gradient(135deg, #f0c989, #d4a373, #a0785a);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+      margin-bottom: 12px;
+    }
+
+    header p {
+      color: var(--muted);
+      font-size: 1rem;
+      font-weight: 300;
+    }
+
+    .grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+      gap: 24px;
+      width: 100%;
+      max-width: 780px;
+    }
+
+    .card {
+      background: var(--card);
+      border: 1px solid var(--border);
+      border-radius: 20px;
+      padding: 32px;
+      text-decoration: none;
+      color: inherit;
+      transition: transform 0.3s ease, border-color 0.3s ease, box-shadow 0.3s ease;
+      position: relative;
+      overflow: hidden;
+      display: block;
+    }
+
+    .card::before {
+      content: '';
+      position: absolute;
+      top: 0; left: 0; right: 0;
+      height: 2px;
+      background: linear-gradient(90deg, transparent, var(--gold), transparent);
+      opacity: 0;
+      transition: opacity 0.3s ease;
+    }
+
+    .card:hover {
+      transform: translateY(-6px);
+      border-color: rgba(212,163,115,0.4);
+      box-shadow: 0 20px 40px rgba(0,0,0,0.4), 0 0 40px rgba(212,163,115,0.06);
+    }
+
+    .card:hover::before {
+      opacity: 1;
+    }
+
+    .card-icon {
+      font-size: 2.5rem;
+      margin-bottom: 18px;
+      display: block;
+    }
+
+    .card-label {
+      font-size: 0.7rem;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: var(--gold);
+      font-weight: 600;
+      margin-bottom: 8px;
+    }
+
+    .card h2 {
+      font-size: 1.4rem;
+      font-weight: 700;
+      margin-bottom: 10px;
+      color: var(--text);
+    }
+
+    .card p {
+      font-size: 0.9rem;
+      color: var(--muted);
+      line-height: 1.6;
+      font-weight: 300;
+    }
+
+    .card-arrow {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      font-size: 0.85rem;
+      font-weight: 600;
+      color: var(--gold);
+      margin-top: 20px;
+      transition: gap 0.2s ease;
+    }
+
+    .card:hover .card-arrow {
+      gap: 10px;
+    }
+
+    footer {
+      margin-top: 60px;
+      color: var(--muted);
+      font-size: 0.8rem;
+      font-weight: 300;
+      letter-spacing: 0.05em;
     }
   </style>
 </head>
 <body>
-  <h2>Mengalihkan ke Coffee Website...</h2>
-  <p>Jika tidak dialihkan secara otomatis, klik tombol di bawah ini:</p>
-  <a href="coffe1/">Buka Coffee Website (coffe1)</a>
+
+  <header>
+    <div class="badge">☕ Coffee Projects</div>
+    <h1>Web Coffee Repository</h1>
+    <p>Kumpulan project website bertema kopi</p>
+  </header>
+
+  <div class="grid">
+    <a href="coffe1/" class="card" id="card-coffe1">
+      <span class="card-icon">🏪</span>
+      <div class="card-label">Project 01</div>
+      <h2>Coffe 1</h2>
+      <p>Website coffee shop pertama dengan desain modern, menu interaktif, dan tampilan yang elegan.</p>
+      <span class="card-arrow">Buka Project →</span>
+    </a>
+
+    <a href="coffe2/" class="card" id="card-coffe2">
+      <span class="card-icon">✨</span>
+      <div class="card-label">Project 02</div>
+      <h2>Coffe 2</h2>
+      <p>Iterasi kedua dengan tampilan yang lebih fresh, animasi halus, dan pengalaman pengguna yang ditingkatkan.</p>
+      <span class="card-arrow">Buka Project →</span>
+    </a>
+  </div>
+
+  <footer>
+    &copy; 2026 &mdash; Wahyu Hidayat &bull; Web Coffee Projects
+  </footer>
+
 </body>
 </html>
